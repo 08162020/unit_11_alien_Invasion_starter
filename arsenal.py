@@ -11,6 +11,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ship import Ship
     from Lab12_bchandler18_1 import AlienInvasion
+    
 
 
 class Arsenal:
@@ -28,7 +29,7 @@ class Arsenal:
         self.bullets: Group = pygame.sprite.Group()
         self.ship: 'Ship' = ai_game.ship  # Access the player's ship from the game
 
-    def fire(self) -> None:
+    def fire_bullet(self) -> None:
         """
         Fire a new bullet if below allowed limit.
         This method creates and adds a bullet to the bullets group.
