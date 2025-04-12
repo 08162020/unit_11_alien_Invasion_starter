@@ -20,14 +20,15 @@ class Ship:
 
         # LOAD and ROTATE image to face right (toward center)
         original_image = pygame.image.load("images/ship.png")
-        self.image: Surface = pygame.transform.rotate(original_image, -90)  # Face right
+        self.image: Surface = pygame.transform.rotate(original_image, 90)  # Face left
 
         self.rect: Rect = self.image.get_rect()
         self.screen_rect: Rect = self.screen.get_rect()
 
-        # Position the ship on the LEFT side, vertically centered
-        self.rect.left = self.screen_rect.left
-        self.rect.centery = self.screen_rect.centery
+        # Start the ship on the right center
+        self.rect.midright = self.screen_rect.midright  # Align ship's right side with screen's right side
+        self.y = float(self.rect.y)
+
 
         # Position values for smooth movement
         self.y: float = float(self.rect.y)

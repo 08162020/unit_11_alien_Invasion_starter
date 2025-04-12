@@ -35,15 +35,22 @@ class Arsenal:
         This method creates and adds a bullet to the bullets group.
         """
         if len(self.bullets) < self.settings.bullet_amount:
-            new_bullet = Bullet(self.ship)
-            self.bullets.add(new_bullet)
+           new_bullet = Bullet(self.ship)
+           new_bullet.rect.centery = self.ship.rect.centery
+           new_bullet.rect.right = self.ship.rect.left
+           new_bullet.x = float(new_bullet.rect.x)
+           self.bullets.add(new_bullet)
+    
 
     def update(self) -> None:
         """Update the position of bullets and remove any that go off-screen."""
         self.bullets.update()
         for bullet in self.bullets.copy():
-            if bullet.rect.bottom <= 0:
+            if bullet.rect.right < 0:
                 self.bullets.remove(bullet)
+    
+
+
 
     def draw(self) -> None:
         """Draw all active bullets to the screen."""

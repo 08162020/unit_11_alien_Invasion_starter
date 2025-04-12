@@ -8,7 +8,7 @@ from pygame.sprite import Sprite
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ship import Ship  # Only imported for type hints, avoids circular import
+    from ship import Ship  
 
 class Bullet(Sprite):
     """A class to manage bullets fired from the ship."""
@@ -34,12 +34,11 @@ class Bullet(Sprite):
         self.rect: pygame.Rect = self.image.get_rect()
         self.rect.midtop = ai_game.rect.midtop
 
-        self.y: float = float(self.rect.y)
-
+        self.x = float(self.rect.x)
     def update(self) -> None:
         """Move the bullet up the screen."""
-        self.y -= self.settings.bullet_speed
-        self.rect.y = int(self.y)
+        self.x -= self.settings.bullet_speed
+        self.rect.x = int(self.x)
 
     def draw(self) -> None:
         """Draw the bullet on the screen."""
