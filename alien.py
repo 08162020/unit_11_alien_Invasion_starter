@@ -27,10 +27,12 @@ class Alien(Sprite):
         # Store precise horizontal position
         self.x: float = float(self.rect.x)
 
-    def check_edges(self) -> bool:
-        """Return True if alien is at edge of screen."""
+    def check_edges(self):
+        """Return True if alien is at top or bottom edge of screen."""
         screen_rect = self.screen.get_rect()
-        return self.rect.right >= screen_rect.right or self.rect.left <= 0
+        if self.rect.top <= 0 or self.rect.bottom >= screen_rect.bottom:
+            return True
+
 
     def update(self) -> None:
         """Move the alien right or left."""

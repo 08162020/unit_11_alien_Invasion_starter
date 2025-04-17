@@ -8,13 +8,17 @@ Date: April 1, 2025
 import pygame
 from pygame.surface import Surface
 from pygame.rect import Rect
+from pygame.sprite import Sprite
 
 
-class Ship:
+
+class Ship(Sprite):
     """A class to manage the player's ship."""
 
     def __init__(self, game: AlienInvasion) -> None:
         """Initialize the ship and set its starting position."""
+        super().__init__()
+
         self.screen: Surface = game.screen
         self.settings = game.settings
 
@@ -45,6 +49,12 @@ class Ship:
             self.y += self.settings.ship_speed
 
         self.rect.y = self.y
+        
+    def center_ship(self):
+        """Center the ship on the screen (right side)."""
+        self.rect.midright = self.screen.get_rect().midright
+        self.y = float(self.rect.y)
+
 
     def blitme(self) -> None:
         """Draw the ship at its current location."""
